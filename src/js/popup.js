@@ -1,13 +1,3 @@
-/**********
- * add confirmation of delete stored data
- * add import data
- * UPDATE DEFAULT DATA
- * COMPLETE GUIDE
- * 
- *  ******** */
-
-
-
 const { ipcRenderer } = require('electron');
 
 // gets field values from localStorage
@@ -63,7 +53,7 @@ var data = (localStorage.data) ? (localStorage.data) : [{
     cpl: '$35',
     pud: '5.1',
     signer: 'Melanie S. Johnson',
-    review: ['NFT ABA','CTS ABA', 'Owner\'s Aff', 'Executed Settlement Statement', 'Deed of Trust'],
+    review: ['NFT/CTS ABAs', 'Owner\'s Aff', 'Executed Settlement Statement', 'Deed of Trust'],
     lps: "Transmital, jacket, CTIC Notice",
     ups: "Email policy to UW",
     regex: '/\w*[nN][tT][vV][aA]\w*/'
@@ -80,7 +70,7 @@ var data = (localStorage.data) ? (localStorage.data) : [{
     signer: 'Melanie S. Johnson',
     review: ['NFT ABA', ,'CTS ABA', 'Owner\'s aff'],
     lps: "Transmital, jacket",
-    ups: "N/A",
+    ups: "Save FINAL RC in RW",
     regex: '/\w*[nN][tT][mM][dD]\w*/'
 },
 {
@@ -88,7 +78,7 @@ var data = (localStorage.data) ? (localStorage.data) : [{
     state: 'Colorado',
     UW: 'CTIC',
     split: 15,
-    jacket: 'use your best judgment:-)',
+    jacket: '....',
     end: true,
     cpl: '$25',
     pud: '5.1/4.1',
@@ -692,8 +682,7 @@ document.addEventListener('input', (e) => {
     if (e.target == riskRate) {
         rate = e.target.value;        
         localStorage.setItem('riskRate', rate);
-        console.log(`${rate}`)
-        checkCalc();
+         checkCalc();
     }
     updateCustomAttributes(localStorage.stateName)
 });
@@ -712,21 +701,19 @@ document.addEventListener('click', function (ev) {
     if (ev.target === (checks)) {
        
         var checkCheckerModeValue = (localStorage.checkCheckerMode) ? localStorage.checkCheckerMode : 0;
-        console.log(checkCheckerModeValue)
-        if(checkCheckerModeValue ==0){
+              if(checkCheckerModeValue ==0){
             localStorage.setItem('checkCheckerMode', true)
             
         }else{localStorage.setItem('checkCheckerMode', 0)}
         toggleCheckCalc()
     }
     if (ev.target === (openReview)) {
-        console.log('review clicked')
+     
         var fileObject = buildFileObjectFromFieldValues();
         storeFileObject(fileObject)
         viewFileReportWindow();
     }
     if (ev.target.matches('button')) {
-        if (ev.target === adden) { return }
         if (ev.target === checks) { return }
         if (ev.target === openReview) { return }
         copyButtonDataValToClipBoard(ev)
@@ -829,7 +816,7 @@ function displayStates() {
 function createButtonsFromStoredData() {
     var buttonsDiv = document.getElementById('buttonsDiv');
     buttonsDiv.innerHTML = "";
-    console.log(btnList)
+   
     for (var i = 0; i < btnList.length; i++) {   //adds buttons dynamically from stored values       
         // Create DOM element
         var btn = document.createElement('button');
@@ -883,6 +870,12 @@ function updateCustomAttributes(stateName) {
     }
     if (jacketBtn) {
         jacketBtn.setAttribute("title", jacket)
+    }
+    if (adden) {
+        if (adden) {
+            console.log( "added")
+            adden.setAttribute("data-val", "adden")
+        }
     }
 
 }
@@ -1017,7 +1010,7 @@ function checkCalc() {
     var UWcheck = totalFixed.toFixed(2);
     var NftCheckLong = total - UWcheck;
     var NftCheck = NftCheckLong.toFixed(2);
-    // console.log(total, UWcheck, NftCheck)
+  
     if (localStorage.stateName == "Rhode Island") {
         UWcheckLong = (parseFloat(premium) * split) + parseFloat(costOne) + parseFloat(costTwo) + parseFloat(costThree) + parseFloat(costFour) + parseFloat(costFive);
         UWcheck = UWcheckLong.toFixed(2);
@@ -1154,9 +1147,7 @@ function copyNotification(data) {
     const myNotification = new Notification('', {
         body: `\"${data}\" copied to clipboard`
     })
-    myNotification.onclick = () => {
-        //console.log('Notification clicked')
-    }
+   
 };
 function addFileToIssuedFilesArray() {
     var fileObject = buildFileObjectFromFieldValues()
@@ -1172,8 +1163,7 @@ function addFileToIssuedFilesArray() {
         return;
     }
     if (!workingFile && !noNewFile) {
-        // console.log('load new file(no working / files ready)')
-        newFile = files[0];
+              newFile = files[0];
     }
     if (workingFile === files[0] && files.length > 1) {
         oldFile = workingFile;
@@ -1200,7 +1190,7 @@ function addFileToIssuedFilesArray() {
 
     storeFileObject(fileObject);
     if (localStorage.reviewMode == "true" && workingFile) {
-        console.log('reviewMode is true')
+      
         viewFileReportWindow(fileObject)
     }
     if (fileIsProblem(newFile)) {
@@ -1264,7 +1254,7 @@ function addFileToProblemFilesArray() {
     }
     storeFileObject(fileObject);
     if (localStorage.reviewMode == "true" && workingFile) {
-        console.log('reviewMode is true')
+      
         viewFileReportWindow(fileObject)
     }
 }
@@ -1284,8 +1274,7 @@ function createArrayofProblemFileObjects() {
 };
 function createArrayofIssuedFileObjects() {
     var issuedFiles = (localStorage.issuedFiles) ? JSON.parse(localStorage.issuedFiles) : [];
-    console.log(issuedFiles)
-    return issuedFiles;
+       return issuedFiles;
 };
 function buildFileObjectFromFieldValues() {
     var problemFiles = createArrayofProblemFileObjects();
@@ -1317,7 +1306,7 @@ function buildFileObjectFromFieldValues() {
 
     fileObject.UWCheckAmtField = UWCheckAmtField.value
     fileObject.NftCheckAmtField = NftCheckAmtField.value
-    console.log(fileObject)
+   
     return fileObject;
 }
 function loadProblemFile(newFile) {
@@ -1378,9 +1367,9 @@ function removeFileFromFilesList(file) {
     localStorage.setItem('filesList', files)
 }
 function addProblemObjectToArray(fileObject) {
-    console.log(fileObject)
+  
     var problemFiles = createArrayofProblemFileObjects()
-    console.log(problemFiles)
+ 
     problemFiles.push(fileObject)
     var stringifyProblems = JSON.stringify(problemFiles)
     localStorage.setItem('problemFiles', stringifyProblems)
