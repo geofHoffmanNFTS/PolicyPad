@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+    <script src="../lib/jquery-3.1.0.min.js"></script>
+    <link rel="stylesheet" href="../css/index.css">
+    <script>if (window.module) module = window.module;</script>
+   
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Edit Copy Buttons</title>
+</head>
+
+<body>
+
+
+
+    <div id="myDIV" class="header">
+        <h1>Enter New Button Info</h1>
+        <form id='form'>
+            <input type="text" id="btnDisplay" placeHolder="Button Display...">
+            <input type="text" id="btnText" placeHolder="Text to copy to clipboard...(optional)">
+            <input type="text" id="btnTip" placeHolder="HoverText...(optional)">
+            <input type="button" id="add" value="Add">
+            <input type="button" id="restart" value="Restart PolicyPad to add buttons to main screen"></td>
+
+        </form>
+    </div>
+    <ul id="myUL"></ul>
+    <div id='buttonsDiv'></div>
+
+
+
+    <script src="../js/editBtns.js"> </script>
+</body>
+
+</html>

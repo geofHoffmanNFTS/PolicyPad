@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+    <script src="../lib/jquery-3.1.0.min.js"></script>
+    <link rel="stylesheet" href="../css/stateData.css">
+
+    <script>if (window.module) module = window.module;</script>
+   
+    <title>Edit State Data</title>
+
+</head>
+
+<body> 
+    <div id="myDIV" class="header">
+        
+        <h2 style="margin:5px">Select State To Edit Data</h2>
+
+    </div>
+    <div class='container'>
+        <form>
+            <label>Select State<select  id="stateName" data-toggle="tooltip"></select></label>
+            <label for='stateUW'>Underwriter<input type="text" id="stateUW"></label>
+            <label for='stateJacket'>Jacket form <input type="text" id="stateJacket"></label>
+            <label>Split(%) <input type="text" id="stateSplit"></label>
+            <div class='end'>
+            <label >Charge for Endorsements?<input  type="checkbox" id="stateEnd"></label>
+        </div>
+            <label>CPL Fee <input type="text" id="stateCPLFee"></label>
+            <label>Riders(5.0/5.1)<input type="text" id="stateRider"></label>
+            <label>Signer<input type="text" id="stateSigner"></label>
+            <label>Loan Policy Set<input type="text" id="LPS"></label>
+            <label>UW Policy Set <input type="text" id="UPS"></label>
+        
+            <label class='end'>Review Items(seperated by commas) <textarea class='end' type="text" id="stateReview"></textarea></label>
+            <input type='button' id='submitChanges' value='submit Changes and restart app'>
+        </form>
+    </div>
+
+
+
+    <script src="../js/stateData.js"></script>
+</body>
+
+
+</html>

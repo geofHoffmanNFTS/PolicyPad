@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Are you Sure? This cannot be undone</title>
+
+        <!-- Use minimum-scale=1 to enable GPU rasterization -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1">
+    </head>
+    <body>
+ 
+    <input type="button" id="clear" value='delete all Files'>
+    <input type ="button" id='cancel' value='cancel'>
+
+
+        <script>
+           const { ipcRenderer } = require('electron');
+           var clear = document.getElementById('clear');
+           var cancel = document.getElementById('cancel');
+           document.addEventListener('click',(e)=>{
+               if (e.target == clear){
+                   clearProblemFiles();
+               }
+               if(e.target == cancel){
+                   location.close();
+               }
+           })
+           function clearProblemFiles(e){
+               localStorage.setItem('problemFiles', [])
+               ipcRenderer.send('closeAfterClearProblemFiles:send', e);
+           }
+           
+
+        </script>
+    </body>
+</html>

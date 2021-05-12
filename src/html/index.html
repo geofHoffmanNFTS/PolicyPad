@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+  <script src="../lib/jquery-3.1.0.min.js"></script>
+ 
+    <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/fontawesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script>if (window.module) module = window.module;</script>
+ 
+  <title>Policy Pad</title>
+</head>
+
+<body>  
+  <div class='header' >
+  
+      <div class='col'>
+        <h2 style="margin:5px">PolicyPad</h2>
+      </div>
+  
+<!---Top Row- File number and buttons -->
+    <div >
+      <div class='col-8'>
+        <input type="text" id="fileNum" class="file copy" placeHolder="File Number...">
+      </div>
+      <div class='col-2'>
+        <input type="button" id="issue" class="fileAction" value="I">
+      </div>
+      <div class='col-2'>
+        <input type="button" id="problem" class="fileAction" value="P">
+      </div>
+    </div>
+
+    <!---Top Row- File number and buttons -->
+      <div >
+        <select class='myInput' id="stateName" data-toggle="tooltip" title="Select state to begin"> </select>
+      </div>
+      <div > 
+        <span id="clear" class="addBtn">Clear All</span>
+      </div>
+
+
+    <div >
+      <div >
+        <input type="text" id="myInput" class='myInput' data-toggle="tooltip" title="Add additional review items. For problem Files enter description of problem here, but do not add"
+          placeholder="Curative issues/ Review Items..."> 
+      </div>
+      <div >
+        <span id="add" class="addBtn">Add</span>
+      </div>
+    </div>
+    <div class='col-12'>
+      <textarea id="problemStatus" ></textarea>
+  </div>
+    <div >
+      <div class='col'>
+        <input id="address" class='input' data-toggle="tooltip" title="Enter address from Commitment/report/RW" type="text"
+          placeholder="Address...">
+      </div>
+    </div>
+
+    <div >
+      <div class='col'>
+        <input id="vesting" class='input' type="text" data-toggle="tooltip" title="Enter Vesting from Commitment"
+          placeholder="Vesting...">
+      </div>
+    </div>
+
+    <div >
+      <div class='col'>
+        <input id="loanAmount" class='input copy' type="text" data-toggle="tooltip" title="Enter Loan Amount from FLI"
+          placeholder="loan Amount...">
+      </div>
+    </div>
+
+    <div  data-toggle="tooltip" title="Select Type from FLI">
+      <div class='col'>
+        <datalist id="types">
+          <option value="CONV">CONV</option>
+          <option value="VA">VA</option>
+          <option value="FHA">FHA</option>
+        </datalist>
+        <input id="type" class='input' list="types" placeholder='Select loan Type' name="types">
+      </div>
+    </div>
+
+    <div >
+      <div class='col'>
+        <input id="date" class='input copy' type="text" data-toggle="tooltip" title="Enter date from FLI" placeholder="Mortgage Date...">
+      </div>
+    </div>
+
+  
+   <div class='row'>
+      <div class="col-sm"><input type="number" value="9"></div>
+      <div class="col-sm"><input type="number" value="8.1"></div>
+      <div class="col-sm"><input id="optEndOne" type="text" placeholder="Endrs.#" value=""></div>
+      <div class="col-sm"><input id="optEndTwo" type="text" placeholder="Endrs.#" value=""></div>
+      <div class="col-sm"><input id="optEndThree" type="text" placeholder="Endrs.#" value=""></div>
+</div>
+
+<div >
+  <div class="col">
+    <input id="riskRate"  type="number" class='input copy' min="0.01" step="0.01" data-toggle="tooltip"
+      title="Enter Anderson County Premium if property is in the county of Davidson, Hamilton, Knox, Rutherford or Williamson"  placeholder="Anderson County Preimum for risk-rate">
+  </div>
+</div>
+
+    <div >
+      <div class="col">
+        <input  type="number" class='input copy' min="0.01" step="0.01" data-toggle="tooltip"
+          title="enter gross premium from final rate-calc" id="premium" placeholder="Premium">
+      </div>
+    </div>
+
+
+    <div class='row'  data-toggle="tooltip" title="Enter endorsement costs from rate-calc" id="bar">
+      <div class="col-sm"><input id="costOne" class='copy' type="number" min="0.01" step="0.01" placeholder="End$$"></div>
+      <div class="col-sm"><input id="costTwo" class='copy'  type="number" min="0.01" step="0.01" placeHolder="End$$"></div>
+      <div class="col-sm"><input id="costThree" class='copy'  type="number" min="0.01" step="0.01" placeholder="End$$"></div>
+      <div class="col-sm"><input id="costFour" class='copy'  type="number" min="0.01" step="0.01" placeholder="End$$"></div>
+      <div class="col-sm"><input id="costFive" class='copy'  type="number" min="0.01" step="0.01" placeholder="End$$"></div>
+    </div>
+   
+    <div >
+      <div class='col'>
+        <input type="number" class="checkInfo copy" id="UWsplit" placeholder="UW Split">
+      </div>
+    </div>
+
+    <div >
+      <div class='col'>
+        <input id="checkNum" class="checkNum checkInfo copy" type="number" data-toggle="tooltip" title="Enter Check# from Report"
+          placeholder="UW Check Number...">
+      </div>
+    </div>
+  <div class='col-12'>
+      <textarea id="split" readonly></textarea>
+  </div>
+   <div id="checkChecker">
+   
+      <div class='col'>
+        <input type="number" class="checkInfo copy" id="nftSplit" placeholder="NFT Split">
+      </div>
+   
+
+   
+      <div class='col'>
+        <input id="NFTCheckNum" class="checkNum checkInfo copy" type="number" data-toggle="tooltip" title="Enter Check# for NFT check"
+          placeholder="NFT Check Number...">
+  
+    </div>
+    
+   
+      <div class='col'>
+        <input type="number" class="checkInfo copy" id="NFTCheckAmt" placeholder="NFT Actual Amt.">
+      </div>
+    
+      <div class='col'>
+        <input type="number" class="checkInfo copy" id="UWCheckAmt" placeholder="UW Actual Amt.">
+      </div>
+      <div >
+        <div class='col'>
+          <input type="button" class="checkInfo copy" id="checkButton" value="Verify Checks">
+        </div>
+      </div>
+   
+  </div> 
+
+ 
+</div>
+</header>
+<main>
+  <div class='main'>
+    <div>
+      <ul id="myUL"></ul>
+    </div>
+  </div>
+</main>
+
+<footer>  
+<div class="footer" id="buttonsDiv">
+  </div>
+</footer>
+
+  </div>
+  </div>
+
+  <script src="../js/popup.js"></script>
+ 
+</body>
+
+
+</html>
