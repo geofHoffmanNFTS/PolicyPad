@@ -68,7 +68,7 @@ var data = (localStorage.data) ? (localStorage.data) : [{
     cpl: '$45',
     pud: '5.1/4.1',
     signer: 'Melanie S. Johnson',
-    review: ['NFT ABA', ,'CTS ABA', 'Owner\'s aff'],
+    review: ['NFT ABA', , 'CTS ABA', 'Owner\'s aff'],
     lps: "Transmital, jacket",
     ups: "Save FINAL RC in RW",
     regex: '/\w*[nN][tT][mM][dD]\w*/'
@@ -83,7 +83,7 @@ var data = (localStorage.data) ? (localStorage.data) : [{
     cpl: '$25',
     pud: '5.1/4.1',
     signer: 'Melanie S. Johnson',
-    review: ['NFT ABA','CTS ABA', 'Owner\'s Aff', 'Gap Aff', 'Marital Status Aff'],
+    review: ['NFT ABA', 'CTS ABA', 'Owner\'s Aff', 'Gap Aff', 'Marital Status Aff'],
     lps: "Transmital, jacket",
     ups: "RATE CALC & POLICY"
 },
@@ -112,7 +112,7 @@ var data = (localStorage.data) ? (localStorage.data) : [{
     cpl: '$50',
     pud: 'inc. ',
     signer: 'Melanie S. Johnson',
-    review: ['NFT ABA','CTS ABA','Owner\'s Aff', 'Gap Aff', 'Executed Settlement Statement', 'Deed of Trust'],
+    review: ['NFT ABA', 'CTS ABA', 'Owner\'s Aff', 'Gap Aff', 'Executed Settlement Statement', 'Deed of Trust'],
     lps: "Transmital, jacket",
     ups: "N/A",
     regex: '/\w*[nN][tT][dD][cC]\w*/'
@@ -523,7 +523,7 @@ var costThreeField = document.getElementById('costThree');
 var costFourField = document.getElementById('costFour');
 var costFiveField = document.getElementById('costFive');
 var nftSplitField = document.getElementById("nftSplit");
-var riskRate =document.getElementById("riskRate")
+var riskRate = document.getElementById("riskRate")
 
 var checkButton = document.getElementById('checkButton');
 var loanSet = document.getElementById("IDLPS");
@@ -565,7 +565,7 @@ costFiveField.value = costFiveVal;
 
 if (fileIsProblem(fileNumVal)) {
     loadProblemFile(fileNumVal)
- displayProblemStatusDiv()
+    displayProblemStatusDiv()
 }
 //MOUSEUP EVENT HANDLER
 document.addEventListener('mouseup', logMouseButton);
@@ -680,9 +680,9 @@ document.addEventListener('input', (e) => {
         localStorage.setItem('costFive', costFiveVal);
     }
     if (e.target == riskRate) {
-        rate = e.target.value;        
+        rate = e.target.value;
         localStorage.setItem('riskRate', rate);
-         checkCalc();
+        checkCalc();
     }
     updateCustomAttributes(localStorage.stateName)
 });
@@ -699,16 +699,16 @@ document.addEventListener('click', function (ev) {
         openAddendumWindow()
     }
     if (ev.target === (checks)) {
-       
+
         var checkCheckerModeValue = (localStorage.checkCheckerMode) ? localStorage.checkCheckerMode : 0;
-              if(checkCheckerModeValue ==0){
+        if (checkCheckerModeValue == 0) {
             localStorage.setItem('checkCheckerMode', true)
-            
-        }else{localStorage.setItem('checkCheckerMode', 0)}
+
+        } else { localStorage.setItem('checkCheckerMode', 0) }
         toggleCheckCalc()
     }
     if (ev.target === (openReview)) {
-     
+
         var fileObject = buildFileObjectFromFieldValues();
         storeFileObject(fileObject)
         viewFileReportWindow();
@@ -816,7 +816,7 @@ function displayStates() {
 function createButtonsFromStoredData() {
     var buttonsDiv = document.getElementById('buttonsDiv');
     buttonsDiv.innerHTML = "";
-   
+
     for (var i = 0; i < btnList.length; i++) {   //adds buttons dynamically from stored values       
         // Create DOM element
         var btn = document.createElement('button');
@@ -839,11 +839,11 @@ function updateCustomAttributes(stateName) {
     createButtonsFromStoredData()
 
     loanSet = document.getElementById("IDLPS");
-    if(!loanSet){loanSet = document.getElementById("LPS")}
+    if (!loanSet) { loanSet = document.getElementById("LPS") }
     printSet = document.getElementById("IDPPS") ? document.getElementById("IDPPS") : null;
-    if(!printSet){printSet = document.getElementById("PPS")}
+    if (!printSet) { printSet = document.getElementById("PPS") }
     UwSet = document.getElementById("IDUWS");
-    if(!UwSet){UwSet = document.getElementById("UWS")}
+    if (!UwSet) { UwSet = document.getElementById("UWS") }
     jacketBtn = document.getElementById("IDJACKET");
     adden = document.getElementById("IDADDEN");
     checks = document.getElementById("IDCHECKS");
@@ -873,7 +873,6 @@ function updateCustomAttributes(stateName) {
     }
     if (adden) {
         if (adden) {
-            console.log( "added")
             adden.setAttribute("data-val", "adden")
         }
     }
@@ -1010,7 +1009,7 @@ function checkCalc() {
     var UWcheck = totalFixed.toFixed(2);
     var NftCheckLong = total - UWcheck;
     var NftCheck = NftCheckLong.toFixed(2);
-  
+
     if (localStorage.stateName == "Rhode Island") {
         UWcheckLong = (parseFloat(premium) * split) + parseFloat(costOne) + parseFloat(costTwo) + parseFloat(costThree) + parseFloat(costFour) + parseFloat(costFive);
         UWcheck = UWcheckLong.toFixed(2);
@@ -1025,13 +1024,18 @@ function checkCalc() {
         UWcheck = (UWcheck > 5) ? (parseFloat(UWcheck) + 3).toFixed(2) : "";
     }
     if (localStorage.stateName == "Tennessee") {
-        if(localStorage.riskRate){
-        UWcheckLong = parseFloat(riskRateAmt) * split
-        UWcheck = UWcheckLong.toFixed(2);
-        NftCheckLong = total - UWcheck;
-        NftCheck = NftCheckLong.toFixed(2);
+        if (localStorage.riskRate) {
+            UWcheckLong = parseFloat(riskRateAmt) * split
+            UWcheck = UWcheckLong.toFixed(2);
+            NftCheckLong = total - UWcheck;
+            NftCheck = NftCheckLong.toFixed(2);
         }
     }
+    if (localStorage.stateName == "Georgia") {
+        UWcheck = (UWcheck) ? (parseFloat(UWcheck) + 50).toFixed(2) : "";
+        NftCheck = (NftCheck) ? (parseFloat(NftCheck) + 50).toFixed(2) : "";
+    }
+
     uwSplitField.value = UWcheck;
     nftSplitField.value = NftCheck;
 }; checkCalc();
@@ -1060,7 +1064,7 @@ function clear() {
     localStorage.setItem('UWCheckAmtVal', '');
     localStorage.setItem('addendumText', ``);
     localStorage.setItem('riskRate', ``);
-    
+
 
     fileNumField.value = localStorage.fileNum;
     myInputField.value = localStorage.myInput;
@@ -1147,7 +1151,7 @@ function copyNotification(data) {
     const myNotification = new Notification('', {
         body: `\"${data}\" copied to clipboard`
     })
-   
+
 };
 function addFileToIssuedFilesArray() {
     var fileObject = buildFileObjectFromFieldValues()
@@ -1163,7 +1167,7 @@ function addFileToIssuedFilesArray() {
         return;
     }
     if (!workingFile && !noNewFile) {
-              newFile = files[0];
+        newFile = files[0];
     }
     if (workingFile === files[0] && files.length > 1) {
         oldFile = workingFile;
@@ -1190,7 +1194,7 @@ function addFileToIssuedFilesArray() {
 
     storeFileObject(fileObject);
     if (localStorage.reviewMode == "true" && workingFile) {
-      
+
         viewFileReportWindow(fileObject)
     }
     if (fileIsProblem(newFile)) {
@@ -1242,7 +1246,7 @@ function addFileToProblemFilesArray() {
     if (fileOnFilesList) {
         removeFileFromFilesList(workingFile)
     }
-    
+
     if (fileIsProblem(newFile)) {
         localStorage.setItem('newFile', newFile)
         localStorage.setItem('problemStatus', 'true')
@@ -1254,7 +1258,7 @@ function addFileToProblemFilesArray() {
     }
     storeFileObject(fileObject);
     if (localStorage.reviewMode == "true" && workingFile) {
-      
+
         viewFileReportWindow(fileObject)
     }
 }
@@ -1274,7 +1278,7 @@ function createArrayofProblemFileObjects() {
 };
 function createArrayofIssuedFileObjects() {
     var issuedFiles = (localStorage.issuedFiles) ? JSON.parse(localStorage.issuedFiles) : [];
-       return issuedFiles;
+    return issuedFiles;
 };
 function buildFileObjectFromFieldValues() {
     var problemFiles = createArrayofProblemFileObjects();
@@ -1283,7 +1287,7 @@ function buildFileObjectFromFieldValues() {
     fileObject.stateName = localStorage.stateName
     fileObject.fileNumField = fileNumField.value
     fileObject.myInputField = myInputField.value
-    if(problemStatus.value){fileObject.myInputField = problemStatus.value}
+    if (problemStatus.value) { fileObject.myInputField = problemStatus.value }
     fileObject.addressField = addressField.value
     fileObject.vestingField = vestingField.value
     fileObject.loanAmountField = loanAmountField.value
@@ -1306,12 +1310,13 @@ function buildFileObjectFromFieldValues() {
 
     fileObject.UWCheckAmtField = UWCheckAmtField.value
     fileObject.NftCheckAmtField = NftCheckAmtField.value
-   
+
     return fileObject;
 }
 function loadProblemFile(newFile) {
     problemFileIndex = problemFilesArray.findIndex(problemFilesArray => problemFilesArray.fileNumField === newFile);
     problemFileObject = problemFilesArray[problemFileIndex];
+    console.log(problemFileObject)
     fileNumField.value = newFile;
     problemStatus.value = problemFileObject.myInputField;
     addressField.value = problemFileObject.addressField;
@@ -1325,15 +1330,16 @@ function loadProblemFile(newFile) {
     premiumField.value = problemFileObject.premiumField;
     uwSplitField.value = '';
     checkNumField.value = problemFileObject.checkNumField;
-    costOneField.value = problemFileObject.costOneField;
-    costTwoField.value = problemFileObject.costTwoField;
-    costThreeField.value = problemFileObject.costThreeField;
-    costFourField.value = problemFileObject.costFourField;
-    costFiveField.value = problemFileObject.costFiveField;
-    NftCheckNumField.value  = problemFileObject.NftCheckNumField;
-    UWCheckAmtField.value  = problemFileObject.UWCheckAmtField;
-    NftCheckAmtField.value  = problemFileObject.NftCheckAmtField;
-   
+    localStorage.costOne = problemFileObject.costOneField;
+
+    localStorage.costTwo = problemFileObject.costTwoField;
+    localStorage.costThree = problemFileObject.costThreeField;
+    localStorage.costFour = problemFileObject.costFourField;
+    localStorage.costFive = problemFileObject.costFiveField;
+    NftCheckNumField.value = problemFileObject.NftCheckNumField;
+    UWCheckAmtField.value = problemFileObject.UWCheckAmtField;
+    NftCheckAmtField.value = problemFileObject.NftCheckAmtField;
+
     checkCalc();
 }
 function removeProblemFileWhenIssued(oldFile) {
@@ -1367,9 +1373,9 @@ function removeFileFromFilesList(file) {
     localStorage.setItem('filesList', files)
 }
 function addProblemObjectToArray(fileObject) {
-  
+
     var problemFiles = createArrayofProblemFileObjects()
- 
+
     problemFiles.push(fileObject)
     var stringifyProblems = JSON.stringify(problemFiles)
     localStorage.setItem('problemFiles', stringifyProblems)
@@ -1396,21 +1402,23 @@ function storeFileObject(fileObject) {
     var stringifyFileObject = JSON.stringify(fileObject);
     localStorage.setItem('fileObject', stringifyFileObject)
 }
-function displayRiskRateDiv(){
-  var riskRate = document.getElementById('riskRate')
-    if(localStorage.stateName == "Tennessee"){
+function displayRiskRateDiv() {
+    var riskRate = document.getElementById('riskRate')
+    if (localStorage.stateName == "Tennessee") {
         riskRate.style.display = 'block'
-    }else{
-   riskRate.style.display = 'none'}    
+    } else {
+        riskRate.style.display = 'none'
+    }
 }
-function displayProblemStatusDiv(){
-    
-      if(localStorage.problemStatus == "true"){
+function displayProblemStatusDiv() {
+
+    if (localStorage.problemStatus == "true") {
         problemStatus.style.display = 'block'
-      }else{
-        problemStatus.style.display = 'none'}    
-  }
-  displayProblemStatusDiv()
+    } else {
+        problemStatus.style.display = 'none'
+    }
+}
+displayProblemStatusDiv()
 
 
 

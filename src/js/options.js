@@ -88,7 +88,7 @@ const getProblemFilesCvs = async function () {
 const getStoredDataCvs = async function () {
     if (localStorage.data) {
         const data = JSON.parse(localStorage.data)
-        console.log(data)
+        //console.log(data)
 
         const csvData = objToCvs(data);
         download(csvData);

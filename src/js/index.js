@@ -5,6 +5,8 @@ const path = require('path');
 const url = require('url');
 let optionsWindow;
 let editStateDataWindow;
+let overwriteStateDataWindow;
+let addCsvToProblemFilesWindow;
 require('update-electron-app')()
 
 // Enable live reload for all the files inside your project directory
@@ -69,7 +71,7 @@ const createMainWindow = () => {
 const createCurrentFilesWindow = () => {
   currentFileWindow = new BrowserWindow({
     width: 400,
-    height: 400,
+    height: 650,
     show: true,
     webPreferences: {
       nodeIntegration: true,
@@ -101,6 +103,7 @@ const createGuideWindow = () => {
     title: 'A Helpful Guide'
   });
   guideWindow.loadFile(path.join(__dirname, '../html/guide.html'));
+  guideWindow.maximize();
   //currentFileWindow.webContents.openDevTools();
   //garbage collection
   guideWindow.on('closed', () => guideWindow = null);
@@ -127,6 +130,7 @@ const createAddendumWindow = () => {
     title: 'Edit Addendum Text Here'
   });
   addendumWindow.loadFile(path.join(__dirname, '../html/addendum.html'));
+addendumWindow.maximize();
   //addendumWindow.webContents.openDevTools();
   //garbage collection
   addendumWindow.on('closed', () => currentFileWindow = null);
@@ -150,10 +154,36 @@ const createOptionsWindow = () => {
     title: 'Paste in or Clear Current Files '
   });
   optionsWindow.loadFile(path.join(__dirname, '../html/options.html'));
-  //currentFileWindow.webContents.openDevTools();
-
+  optionsWindow.maximize()
   //garbage collection
   optionsWindow.on('closed', () => optionsWindow = null);
+};
+
+const createTableWindow = () => {
+  tableWindow = new BrowserWindow({
+    width: 400,
+    height: 400,
+    show: true,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+    title: 'Upload Saved Data as CSV'
+  });
+  tableWindow.loadFile(path.join(__dirname, '../html/tableWindow.html'));
+  tableWindow.maximize()
+
+  const ctxMenu = new Menu()
+  ctxMenu.append(new MenuItem({ role: 'copy' }))
+  ctxMenu.append(new MenuItem({ role: 'paste' }))
+
+  tableWindow.webContents.on('context-menu', function (e, params) {
+    ctxMenu.popup(tableWindow, params.x, params.y)
+
+  })
+  //tableWindow.webContents.openDevTools();
+
+  //garbage collection
+  tableWindow.on('closed', () => tableWindow = null);
 };
 const createProblemFilesWindow = () => {
   problemFileWindow = new BrowserWindow({
@@ -167,6 +197,16 @@ const createProblemFilesWindow = () => {
   });
 
   problemFileWindow.loadFile(path.join(__dirname, '../html/problemFile.html'));
+  problemFileWindow.maximize()
+  const ctxMenu = new Menu()
+  ctxMenu.append(new MenuItem({ role: 'copy' }))
+  ctxMenu.append(new MenuItem({ role: 'paste' }))
+
+  problemFileWindow.webContents.on('context-menu', function (e, params) {
+    ctxMenu.popup(problemFileWindow, params.x, params.y)
+
+  })
+
   //currentFileWindow.webContents.openDevTools();
 
 
@@ -184,6 +224,16 @@ const createIssuedFilesWindow = () => {
     title: 'Issued files'
   });
   issuedFileWindow.loadFile(path.join(__dirname, '../html/issuedFiles.html'));
+  issuedFileWindow.maximize()
+
+  const ctxMenu = new Menu()
+  ctxMenu.append(new MenuItem({ role: 'copy' }))
+  ctxMenu.append(new MenuItem({ role: 'paste' }))
+
+  issuedFileWindow.webContents.on('context-menu', function (e, params) {
+    ctxMenu.popup(issuedFileWindow, params.x, params.y)
+
+  })
   //currentFileWindow.webContents.openDevTools();
   //garbage collection
   issuedFileWindow.on('closed', () => issuedFileWindow = null);
@@ -199,6 +249,17 @@ const createReportPopUp = () => {
     title: 'View Issued Files Report'
   });
   createReportPopUpWindow.loadFile(path.join(__dirname, '../html/reportPopUp.html'));
+  createReportPopUp.maximize()
+
+  const ctxMenu = new Menu()
+  ctxMenu.append(new MenuItem({ role: 'copy' }))
+  ctxMenu.append(new MenuItem({ role: 'paste' }))
+
+  createReportPopUp.webContents.on('context-menu', function (e, params) {
+    ctxMenu.popup(createReportPopUp, params.x, params.y)
+
+  })
+
   // currentFileWindow.webContents.openDevTools();
   //garbage collection
 
@@ -222,6 +283,15 @@ const createCheckCheckerPopUp = (fileObject) => {
 
   createCheckCheckerPopUpWindow.loadFile(path.join(__dirname, '../html/checkCheckerPopUp.html'));
 
+  const ctxMenu = new Menu()
+  ctxMenu.append(new MenuItem({ role: 'copy' }))
+  ctxMenu.append(new MenuItem({ role: 'paste' }))
+
+  createCheckCheckerPopUpWindow.webContents.on('context-menu', function (e, params) {
+    ctxMenu.popup(createCheckCheckerPopUpWindow, params.x, params.y)
+
+  })
+
 
 
   // currentFileWindow.webContents.openDevTools();
@@ -243,6 +313,7 @@ const createFileReportPopUp = () => {
     title: 'View Issued File to Copy and Save'
   });
   createFileReportPopUpWindow.loadFile(path.join(__dirname, '../html/reviewFile.html'));
+  createFileReportPopUpWindow.maximize();
   //createFileReportPopUpWindow.webContents.openDevTools();
   //garbage collection
 
@@ -279,6 +350,54 @@ const createClearStateDataWindow = () => {
   //garbage collection
   clearStateDataWindow.on('closed', () => clearStateDataWindow = null);
 };
+
+const createAddCsvToProblemFilesWindow = () => {
+  addCsvToProblemFilesWindow = new BrowserWindow({
+    width: 500,
+    height: 150,
+    show: true,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+    title: 'Are you Sure?'
+  });
+  addCsvToProblemFilesWindow.loadFile(path.join(__dirname, '../html/addCsvtoproblemFilesConvirmationWindow.html'));
+  //addCsvToProblemFilesWindow.webContents.openDevTools();
+  //garbage collection
+  addCsvToProblemFilesWindow.on('closed', () => addCsvToProblemFilesWindow = null);
+};
+
+
+
+const createOverwriteStateDataConfirmationWindow = () => {
+  overwriteStateDataWindow = new BrowserWindow({
+    width: 500,
+    height: 150,
+    show: true,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+    title: 'Are you Sure?'
+  });
+  overwriteStateDataWindow.loadFile(path.join(__dirname, '../html/overwriteStateDataConfirmationPopUp.html'));
+  //overwriteStateDataWindow.webContents.openDevTools();
+  //garbage collection
+  overwriteStateDataWindow.on('closed', () => overwriteStateDataWindow = null);
+};
+
+ipcMain.on('openOverwriteConfirmationWindow', function () {
+  createOverwriteStateDataConfirmationWindow()
+});
+ipcMain.on('closeOverwriteConfirmation', function () {
+  overwriteStateDataWindow.close()
+});
+
+ipcMain.on('openAddProblemFilesConfirmationWindow', function () {
+  createAddCsvToProblemFilesWindow()
+});
+ipcMain.on('closeAddProblemFilesConfirmationWindow', function () {
+  addCsvToProblemFilesWindow.close()
+});
 
 ipcMain.on('clearProblemFiles:send', function () {
   createClearProblemFilesWindow()
@@ -438,12 +557,20 @@ const mainMenuTemplate = [
         label: 'Addendum Text',
         click() {
           createAddendumWindow();
+        },
+      },
+        {
+        label: 'View and Uploaded saved file data',
+        click() {
+          createTableWindow();
         }
       }
-    ]
+      
+      
+]
   },
-  {
-    label: 'Links',
+{
+  label: 'Links',
     submenu: [
       {
         label: 'Fidelity Rate Calc',
@@ -479,9 +606,9 @@ const mainMenuTemplate = [
         }
       }
     ]
-  },
-  {
-    label: '&Help',
+},
+{
+  label: '&Help',
     submenu: [
       {
         label: 'DON\'T PANIC',
@@ -498,7 +625,7 @@ const mainMenuTemplate = [
       }
 
     ]
-  }
+}
 
 ];
 // If mac, add empty item to menu

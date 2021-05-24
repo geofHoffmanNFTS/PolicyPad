@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Are you Sure? This cannot be undone</title>
+
+        <!-- Use minimum-scale=1 to enable GPU rasterization -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1">
+    </head>
+    <body>
+ 
+    <input type="button" id="overwrite" value='OVERWRITE STATE DATA WITH TABLE INFO. THIS CANNOT BE UNDONE'>
+    <input type ="button" id='cancel' value='cancel'>
+
+
+        <script>
+          const { ipcRenderer } = require('electron');
+           var overwrite = document.getElementById('overwrite');
+           var cancel = document.getElementById('cancel');
+           document.addEventListener('click',(e)=>{
+               if (e.target == overwrite){
+                  localStorage.data = localStorage.stringData
+                  ipcRenderer.send('restartApp');
+               }
+               if(e.target == cancel){
+                 
+                ipcRenderer.send('closeOverwriteConfirmation')
+               }
+           })
+           function clearStoredData() {
+            localStorage.removeItem('data')
+            localStorage.removeItem('defaultData')
+            alert('stored data has been cleared')
+            ipcRenderer.send('restartApp');
+            
+            
+
+            return
+        
+        }
+           
+
+        </script>
+    </body>
+</html>

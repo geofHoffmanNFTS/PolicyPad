@@ -1,0 +1,66 @@
+{
+  "name": "policypad",
+  "productName": "PolicyPad",
+  "version": "v1.7.0",
+  "description": "Short Form Policy Production Tool",
+  "main": "src/js/index.js",
+  "repository": "git@github.com:geofHoffmanNFTS/PolicyPad.git",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\"",
+    "build-installer": "electron-builder",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.policypad.app",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "src/icon.ico"
+    },
+    "nsis": {
+      "installerIcon": "src/icon.ico",
+      "uninstallerIcon": "src/icon.ico",
+      "uninstallDisplayName": "PolicyPad",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "license": "license.txt"
+    }
+  },
+  "keywords": [],
+  "author": {
+    "name": "geof.hoffman",
+    "email": "geof.hoffman.nfts@gmail.com"
+  },
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {}
+    }
+  },
+  "github_repository": {
+    "owner": "geofHoffmanNFTS",
+    "name": "geofHoffmanNFTS",
+    "email": "geof.hoffman.nfts@gmail.com"
+  },
+  "dependencies": {
+    "electron-reload": "^1.5.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-updater": "^4.3.5",
+    "update-electron-app": "^2.0.1"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.54",
+    "@electron-forge/maker-deb": "^6.0.0-beta.54",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
+    "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "electron": "11.2.2",
+    "electron-builder": "^22.10.5"
+  }
+}
