@@ -1,7 +1,7 @@
 {
   "name": "policypad",
   "productName": "PolicyPad",
-  "version": "v1.7.0",
+  "version": "v1.8.0",
   "description": "Short Form Policy Production Tool",
   "main": "src/js/index.js",
   "repository": "git@github.com:geofHoffmanNFTS/PolicyPad.git",

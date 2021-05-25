@@ -249,7 +249,7 @@ const createReportPopUp = () => {
     title: 'View Issued Files Report'
   });
   createReportPopUpWindow.loadFile(path.join(__dirname, '../html/reportPopUp.html'));
-  createReportPopUp.maximize()
+  createReportPopUpWindow.maximize()
 
   const ctxMenu = new Menu()
   ctxMenu.append(new MenuItem({ role: 'copy' }))

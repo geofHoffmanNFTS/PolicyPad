@@ -1034,10 +1034,11 @@ function checkCalc() {
     if (localStorage.stateName == "Georgia") {
         UWcheck = (UWcheck) ? (parseFloat(UWcheck) + 50).toFixed(2) : "";
         NftCheck = (NftCheck) ? (parseFloat(NftCheck) + 50).toFixed(2) : "";
+        
     }
 
-    uwSplitField.value = UWcheck;
-    nftSplitField.value = NftCheck;
+    uwSplitField.value = (isNaN(UWcheck))? 0 : UWcheck;
+    nftSplitField.value = (isNaN(NftCheck))? 0: NftCheck;
 }; checkCalc();
 function clear() {
     stateArray = (stateArray) ? stateArray : [];
