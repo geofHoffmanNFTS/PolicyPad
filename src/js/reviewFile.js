@@ -41,7 +41,7 @@ if(diff < 0 ){
 status = `SHORT by \$${Number(diff *-1 ).toFixed(2)}`
 }
 if(diff == 0 ){
-status = `correct`;
+status = `CORRECT`;
 }
 if(status){
 if(!uwCheckAmt){status = 'UNKNOWN'}

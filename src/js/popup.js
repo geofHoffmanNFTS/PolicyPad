@@ -95,9 +95,9 @@ var data = (localStorage.data) ? (localStorage.data) : [{
     jacket: 'short form refinance....',
     split: 20,
     end: false,
-    cpl: '$25/ $25 (BWR opt.)',
+    cpl: '$25/ $25 (BWR opt.-IF REQUESTED BEFORE OR AT CLOSING, SEND REQUEST TO PRE IF CPL HASN\'T BEEN ORDERED AND REMIT.  )',
     pud: '5.0 or 5.1',
-    signer: 'Melanie S. Johnson',
+    signer: 'John A. Baggett',
     review: ['NFT ABA', 'Owner\'s aff', 'Fire Dues Aff', 'Notice of Avail..', 'EMAIL SIGNED JACKET TO ATTORNEY FOR APPROVAL'],
     lps: "trans., Jacket",
     ups: "POLICY MUST BE SIGNED PRIOR TO EMAILING TO UW"
@@ -139,7 +139,7 @@ var data = (localStorage.data) ? (localStorage.data) : [{
     cpl: '$50',
     pud: '5.0',
     signer: 'Melanie S. Johnson',
-    review: ['NFT ABA', 'Owner\'s aff', 'Security Deed', 'Executed Settlement Statement'],
+    review: [' Owner\'s aff', 'Security Deed', 'Executed Settlement Statement'],
     lps: "Transmital, jacket",
     ups: "N/A"
 },
@@ -236,7 +236,7 @@ var data = (localStorage.data) ? (localStorage.data) : [{
     cpl: 'n/a',
     pud: '5.0',
     signer: 'Melanie S. Johnson',
-    review: ['NFT ABA', 'Owner\'s aff', 'Executed Settlement Statement', 'Deed of trust', 'FTO STATE']
+    review: ['Owner\'s aff', 'Executed Settlement Statement', 'Deed of trust', 'FTO STATE']
 },
 {
     id: 'MI',
@@ -298,7 +298,7 @@ var data = (localStorage.data) ? (localStorage.data) : [{
     cpl: 'n/a',
     pud: '5.0',
     signer: 'Melanie S. Johnson',
-    review: ['NFT ABA', 'Owner\'s aff', 'Executed Settlement Statement', 'Deed of trust']
+    review: ['Owner\'s aff', 'Executed Settlement Statement', 'Deed of trust']
 },
 {
     id: 'NE',
@@ -343,7 +343,7 @@ var data = (localStorage.data) ? (localStorage.data) : [{
     split: 10,
     jacket: 'ALTA Short Form Residential Loan Policy (Rev. 6-16-07) (A&B)',
     end: true,
-    cpl: '$40 lender; $20 borrower (optional)',
+    cpl: '$40 lender; $20 borrower (optional)- CPL CANNOT BE ORDERED AFTER CLOSING. REFUND FEE IF A CPL HAS NOT BEEN ORDERED, REGARDLESS OR WHETHER OR NOT IT IS REQUESTED.',
     pud: '5.0/4.0',
     signer: 'Melanie Johnson',
     review: ['NFT ABA', 'Owner\'s aff', ' Marital Status Aff (notarized)', 'Closing Disclosure', 'Notice of Availability and Offer of Closing Protection Coverage/Offer of CPL', 'Affidavit of No New Improvements (notarized)', 'Executed Settlement Statement', 'Deed of trust']
@@ -382,7 +382,7 @@ var data = (localStorage.data) ? (localStorage.data) : [{
     cpl: '$35',
     pud: '5.0',
     signer: 'Melanie S. Johnson',
-    review: ['NFT ABA', 'Owner\'s aff', 'Executed Settlement Statement', 'Deed of trust', 'FTO state']
+    review: ['Owner\'s aff', 'Executed Settlement Statement', 'Deed of trust', 'FTO state']
 },
 {
     id: 'TN',
@@ -472,7 +472,7 @@ var buttons = [{
     tip: ""
 },
 {
-    btn: "jacket",
+    btn: "JACKET",
     txt: "",
     tip: ""
 },
